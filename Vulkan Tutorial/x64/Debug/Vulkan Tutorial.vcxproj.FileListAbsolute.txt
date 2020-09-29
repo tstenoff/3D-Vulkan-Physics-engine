@@ -1,0 +1,2 @@
+C:\Users\osama\source\repos\Vulkan Tutorial\x64\Debug\Vulkan Tutorial.exe
+C:\Users\osama\source\repos\Vulkan Tutorial\x64\Debug\Vulkan Tutorial.pdb
