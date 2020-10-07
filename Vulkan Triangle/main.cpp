@@ -326,8 +326,8 @@ private:
 
 		return requiredExtensions.empty();
 
-		createInfo.enabledExtensionCount = static_cast<uint32_t>(deviceExtensions.size());
-		createInfo.ppEnabledExtensionNames = deviceExtensions.data();
+		//createInfo.enabledExtensionCount = static_cast<uint32_t>(deviceExtensions.size());
+		//createInfo.ppEnabledExtensionNames = deviceExtensions.data();
 	}
 
 	struct SwapChainSupportDetails {
@@ -343,6 +343,7 @@ private:
 
 		vkGetPhysicalDeviceSurfaceCapabilitiesKHR(device, surface, &details.capabilities);
 		uint32_t formatCount;
+		bool extensionsSupported = true;
 		vkGetPhysicalDeviceSurfaceFormatsKHR(device, surface, &formatCount, nullptr);
 
 		if (formatCount != 0) {
@@ -383,6 +384,8 @@ private:
 	}
 
 	VkExtent2D chooseSwapExtent(const VkSurfaceCapabilitiesKHR& capabilities) {
+		VkExtent2D currentFrame;
+
 		if (capabilities.currentExtent.width != UINT32_MAX) {
 			return capabilities.currentExtent;
 		}
@@ -431,6 +434,8 @@ private:
 	}
 
 	void createSwapChain() {
+		VkPhysicalDevice physicalDevice;
+
 		SwapChainSupportDetails swapChainSupport = querySwapChainSupport(physicalDevice);
 
 		VkSurfaceFormatKHR surfaceFormat = chooseSwapSurfaceFormat(swapChainSupport.formats);
@@ -476,6 +481,13 @@ private:
 	}
 
 	void cleanupSwapChain() {
+		VkSwapchainKHR swapChainImageViews;
+		VkRenderPass renderPass;
+		VkPipelineLayout pipelineLayout;
+		VkPipeline graphicsPipeline;
+		VkCommandBuffer commandBuffers;
+		VkSwapchainKHR swapChainFramebuffers;
+
 		for (size_t i = 0; i < swapChainFramebuffers.size(); i++) {
 			vkDestroyFramebuffer(device, swapChainFramebuffers[i], nullptr);
 		}
@@ -539,6 +551,10 @@ private:
 	}
 
 	void createImageViews() {
+		VkImage swapChainImages;
+		VkImageView swapChainImageViews;
+		VkFormat swapChainImageFormat;
+
 		swapChainImageViews.resize(swapChainImages.size());
 
 		for (size_t i = 0; i < swapChainImages.size(); i++) {
@@ -584,6 +600,8 @@ private:
 	}
 
 	void createRenderPass() {
+		VkFormat swapChainImageFormat;
+
 		VkAttachmentDescription colorAttachment{};
 		colorAttachment.format = swapChainImageFormat;
 		colorAttachment.samples = VK_SAMPLE_COUNT_1_BIT;
@@ -651,6 +669,15 @@ private:
 
 		VkPipelineShaderStageCreateInfo shaderStages[] = { vertShaderStageInfo, fragShaderStageInfo };
 
+		VkRenderPass renderPass;
+		VkPipelineLayout pipelineLayout;
+		VkPipelineColorBlendStateCreateInfo colorBlending;
+		VkPipelineVertexInputStateCreateInfo vertexInputInfo;
+		VkPipelineInputAssemblyStateCreateInfo inputAssembly;
+		VkPipelineViewportStateCreateInfo viewportState;
+		VkPipelineRasterizationStateCreateInfo rasterizer;
+		VkPipelineMultisampleStateCreateInfo multisampling;
+
 		VkGraphicsPipelineCreateInfo pipelineInfo{};
 		pipelineInfo.sType = VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO;
 		pipelineInfo.stageCount = 2;
@@ -677,6 +704,8 @@ private:
 	}
 
 	VkShaderModule createShaderModule(const std::vector<char>& code) {
+		VkShaderModule shaderModule;
+
 		VkShaderModuleCreateInfo createInfo{};
 		createInfo.sType = VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO;
 		createInfo.codeSize = code.size();
@@ -690,6 +719,7 @@ private:
 	}
 
 	void createLogicalDevice() {
+		VkPhysicalDevice physicalDevice;
 
 		QueueFamilyIndices indices = findQueueFamilies(physicalDevice);
 		uint32_t queueFamilyIndices[] = { indices.graphicsFamily.value(), indices.presentFamily.value() };
@@ -751,6 +781,10 @@ private:
 
 
 	void createFramebuffers() {
+		VkRenderPass renderPass;
+		VkExtent2D swapChainExtent;
+		VkImageSwapchainCreateInfoKHR swapChainImageViews;
+
 		std::vector<VkFramebuffer> swapChainFramebuffers;
 		swapChainFramebuffers.resize(swapChainImageViews.size());
 		for (size_t i = 0; i < swapChainImageViews.size(); i++) {
@@ -774,6 +808,8 @@ private:
 	}
 
 	void createCommandPool() {
+		VkPhysicalDevice physicalDevice;
+
 		QueueFamilyIndices queueFamilyIndices = findQueueFamilies(physicalDevice);
 
 		VkCommandPoolCreateInfo poolInfo{};
@@ -787,6 +823,9 @@ private:
 	}
 
 	void createCommandBuffers() {
+		VkCommandBuffer commandBuffers;
+		VkSwapchainKHR swapChainFramebuffers;
+
 		commandBuffers.resize(swapChainFramebuffers.size());
 
 		VkCommandBufferAllocateInfo allocInfo{};
@@ -809,6 +848,11 @@ private:
 				throw std::runtime_error("failed to begin recording command buffer!");
 			}
 		}
+
+		VkRenderPass renderPass;
+		VkExtent2D swapChainExtent;
+		VkFramebuffer swapChainFramebuffers;
+		VkPipeline graphicsPipeline;
 
 		VkRenderPassBeginInfo renderPassInfo{};
 		renderPassInfo.sType = VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO;
@@ -842,7 +886,7 @@ private:
 
 	static void framebufferResizeCallback(GLFWwindow* window, int width, int height) {
 		window = glfwCreateWindow(WIDTH, HEIGHT, "Vulkan", nullptr, nullptr);
-		glfwSetWindowUserPointer(window, this);
+		glfwSetWindowUserPointer(window, nullptr);
 		glfwSetFramebufferSizeCallback(window, framebufferResizeCallback);
 
 		auto app = reinterpret_cast<HelloTriangleApplication*>(glfwGetWindowUserPointer(window));
@@ -859,6 +903,12 @@ private:
 	}
 
 	void drawFrame() {
+		VkPhysicalDevice currentFrame;
+		uint32_t imageIndex;
+		VkImage imagesInFlight;
+		VkPhysicalDevice imageAvailableSemaphores;
+		VkSubmitInfo submitInfo;
+		VkQueue graphicsQueue;
 
 		vkWaitForFences(device, 1, &inFlightFences[currentFrame], VK_TRUE, UINT64_MAX);
 		vkResetFences(device, 1, &inFlightFences[currentFrame]);
@@ -922,6 +972,8 @@ private:
 		std::vector<VkFence> imagesInFlight;
 		size_t currentFrame = 0;
 
+		VkSwapchainCreateFlagsKHR swapChainImages;
+
 		imageAvailableSemaphores.resize(MAX_FRAMES_IN_FLIGHT);
 		renderFinishedSemaphores.resize(MAX_FRAMES_IN_FLIGHT);
 		inFlightFences.resize(MAX_FRAMES_IN_FLIGHT);
@@ -946,6 +998,10 @@ private:
 
 
 	void cleanup() {
+		VkPipeline graphicsPipeline;
+		VkPipelineLayout pipelineLayout;
+		VkRenderPass renderPass;
+
 		vkDestroySurfaceKHR(instance, surface, nullptr);
 		vkDestroyInstance(instance, nullptr);
 		vkDestroyPipeline(device, graphicsPipeline, nullptr);
@@ -971,6 +1027,8 @@ private:
 			}
 
 			vkDestroyDevice(device, nullptr);
+
+			VkShaderModule fragShaderModule, vertShaderModule;
 
 			vkDestroyShaderModule(device, fragShaderModule, nullptr);
 			vkDestroyShaderModule(device, vertShaderModule, nullptr);
