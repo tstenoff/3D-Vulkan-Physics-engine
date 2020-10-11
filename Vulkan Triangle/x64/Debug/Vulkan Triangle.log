@@ -1,152 +1,154 @@
 ﻿  main.cpp
   The contents of <optional> are available only with C++17 or later.
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(245,8): error C2039: 'optional': is not a member of 'std'
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\fstream(26): message : see declaration of 'std'
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(245,16): error C2143: syntax error: missing ';' before '<'
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(245,16): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(245,41): error C2238: unexpected token(s) preceding ';'
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(246,8): error C2039: 'optional': is not a member of 'std'
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\fstream(26): message : see declaration of 'std'
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(246,16): error C2143: syntax error: missing ';' before '<'
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(246,16): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(246,40): error C2238: unexpected token(s) preceding ';'
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(205,3): error C2065: 'VkWin32SurfaceCreateInfoKHR': undeclared identifier
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(205,31): error C2146: syntax error: missing ';' before identifier 'createInfo'
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(205,31): error C2065: 'createInfo': undeclared identifier
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(206,3): error C2065: 'createInfo': undeclared identifier
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(207,3): error C2065: 'createInfo': undeclared identifier
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(207,21): error C3861: 'glfwGetWin32Window': identifier not found
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(208,3): error C2065: 'createInfo': undeclared identifier
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(208,26): error C3861: 'GetModuleHandle': identifier not found
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(231,16): error C3861: 'rateDeviceSuitability': identifier not found
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(249,12): error C2065: 'graphicsFamily': undeclared identifier
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(249,42): error C2065: 'presentFamily': undeclared identifier
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(256,28): error C2065: 'indices': undeclared identifier
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(256,1): error C2660: 'vkGetDeviceQueue': function does not take 3 arguments
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(233,16): error C2064: term does not evaluate to a function taking 1 arguments
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(251,27): error C2039: 'has_value': is not a member of 'std::allocator<uint32_t>'
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(247): message : see declaration of 'std::allocator<uint32_t>'
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(251,56): error C2039: 'has_value': is not a member of 'std::allocator<uint32_t>'
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(247): message : see declaration of 'std::allocator<uint32_t>'
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(262,36): error C2039: 'presentFamily': is not a member of 'std::vector<VkSwapchainCreateFlagsKHR,std::allocator<uint32_t>>'
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(260): message : see declaration of 'std::vector<VkSwapchainCreateFlagsKHR,std::allocator<uint32_t>>'
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(262,1): error C2660: 'vkGetDeviceQueue': function does not take 3 arguments
 C:\GameDev\Vulkan\VulkanSDK\1.2.148.1\Include\vulkan\vulkan_core.h(3299,28): message : see declaration of 'vkGetDeviceQueue'
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(257,50): error C2065: 'physicalDevice': undeclared identifier
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(266,1): error C2440: 'return': cannot convert from 'HelloTriangleApplication::QueueFamilyIndices' to 'uint32_t'
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(266,10): message : No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(271,13): error C2039: 'graphicsFamily': is not a member of 'HelloTriangleApplication::QueueFamilyIndices'
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(244): message : see declaration of 'HelloTriangleApplication::QueueFamilyIndices'
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(282,54): error C2039: 'graphicsFamily': is not a member of 'HelloTriangleApplication::QueueFamilyIndices'
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(244): message : see declaration of 'HelloTriangleApplication::QueueFamilyIndices'
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(282,86): error C2039: 'presentFamily': is not a member of 'HelloTriangleApplication::QueueFamilyIndices'
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(244): message : see declaration of 'HelloTriangleApplication::QueueFamilyIndices'
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(294,3): error C2065: 'createInfo': undeclared identifier
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(295,3): error C2065: 'createInfo': undeclared identifier
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(298,12): error C2039: 'presentFamily': is not a member of 'HelloTriangleApplication::QueueFamilyIndices'
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(244): message : see declaration of 'HelloTriangleApplication::QueueFamilyIndices'
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(307,1): error C2440: 'initializing': cannot convert from 'uint32_t' to 'HelloTriangleApplication::QueueFamilyIndices'
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(307,1): message : No constructor could take the source type, or constructor overload resolution was ambiguous
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(402,74): error C2065: 'imageAvailableSemaphores': undeclared identifier
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(402,131): error C2065: 'imageIndex': undeclared identifier
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(406,4): error C2561: 'HelloTriangleApplication::chooseSwapExtent': function must return a value
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(386): message : see declaration of 'HelloTriangleApplication::chooseSwapExtent'
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(412,45): error C2065: 'presentInfo': undeclared identifier
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(421,32): error C2676: binary '+': 'VkExtent2D' does not define this operator or a conversion to a type acceptable to the predefined operator
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(424,10): error C2371: 'currentFrame': redefinition; different basic types
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(387): message : see declaration of 'currentFrame'
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(476,24): error C2086: 'std::vector<VkImage,std::allocator<VkImage>> swapChainImages': redefinition
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(470): message : see declaration of 'swapChainImages'
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(492,1): error C2664: 'void vkDestroyFramebuffer(VkDevice,VkFramebuffer,const VkAllocationCallbacks *)': cannot convert argument 2 from 'VkSwapchainKHR_T' to 'VkFramebuffer'
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(492,1): message : use of undefined type 'VkSwapchainKHR_T'
-C:\GameDev\Vulkan\VulkanSDK\1.2.148.1\Include\vulkan\vulkan_core.h(5735,1): message : see declaration of 'VkSwapchainKHR_T'
-C:\GameDev\Vulkan\VulkanSDK\1.2.148.1\Include\vulkan\vulkan_core.h(3659,28): message : see declaration of 'vkDestroyFramebuffer'
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(495,1): error C2660: 'vkFreeCommandBuffers': function does not take 2 arguments
-C:\GameDev\Vulkan\VulkanSDK\1.2.148.1\Include\vulkan\vulkan_core.h(3701,28): message : see declaration of 'vkFreeCommandBuffers'
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(502,1): error C2664: 'void vkDestroyImageView(VkDevice,VkImageView,const VkAllocationCallbacks *)': cannot convert argument 2 from 'VkSwapchainKHR_T' to 'VkImageView'
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(502,1): message : use of undefined type 'VkSwapchainKHR_T'
-C:\GameDev\Vulkan\VulkanSDK\1.2.148.1\Include\vulkan\vulkan_core.h(5735,1): message : see declaration of 'VkSwapchainKHR_T'
-C:\GameDev\Vulkan\VulkanSDK\1.2.148.1\Include\vulkan\vulkan_core.h(3526,28): message : see declaration of 'vkDestroyImageView'
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(566,38): error C2065: 'i': undeclared identifier
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(579,76): error C2065: 'i': undeclared identifier
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(579,1): error C2660: 'vkCreateImageView': function does not take 3 arguments
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(263,22): error C2371: 'indices': redefinition; different basic types
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(260): message : see declaration of 'indices'
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(263,1): error C2440: 'initializing': cannot convert from 'uint32_t' to 'HelloTriangleApplication::QueueFamilyIndices'
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(263,1): message : No constructor could take the source type, or constructor overload resolution was ambiguous
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(277,13): error C2039: 'graphicsFamily': is not a member of 'std::vector<VkSwapchainCreateFlagsKHR,std::allocator<uint32_t>>'
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(260): message : see declaration of 'std::vector<VkSwapchainCreateFlagsKHR,std::allocator<uint32_t>>'
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(288,54): error C2039: 'graphicsFamily': is not a member of 'std::vector<VkSwapchainCreateFlagsKHR,std::allocator<uint32_t>>'
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(260): message : see declaration of 'std::vector<VkSwapchainCreateFlagsKHR,std::allocator<uint32_t>>'
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(288,86): error C2039: 'presentFamily': is not a member of 'std::vector<VkSwapchainCreateFlagsKHR,std::allocator<uint32_t>>'
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(260): message : see declaration of 'std::vector<VkSwapchainCreateFlagsKHR,std::allocator<uint32_t>>'
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(300,3): error C2065: 'createInfo': undeclared identifier
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(301,3): error C2065: 'createInfo': undeclared identifier
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(304,12): error C2039: 'presentFamily': is not a member of 'std::vector<VkSwapchainCreateFlagsKHR,std::allocator<uint32_t>>'
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(260): message : see declaration of 'std::vector<VkSwapchainCreateFlagsKHR,std::allocator<uint32_t>>'
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(313,1): error C2440: 'initializing': cannot convert from 'uint32_t' to 'HelloTriangleApplication::QueueFamilyIndices'
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(313,1): message : No constructor could take the source type, or constructor overload resolution was ambiguous
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(416,4): error C2561: 'HelloTriangleApplication::chooseSwapExtent': function must return a value
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(392): message : see declaration of 'HelloTriangleApplication::chooseSwapExtent'
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(488,24): error C2086: 'std::vector<VkImage,std::allocator<VkImage>> swapChainImages': redefinition
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(482): message : see declaration of 'swapChainImages'
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(578,38): error C2065: 'i': undeclared identifier
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(591,76): error C2065: 'i': undeclared identifier
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(591,1): error C2660: 'vkCreateImageView': function does not take 3 arguments
 C:\GameDev\Vulkan\VulkanSDK\1.2.148.1\Include\vulkan\vulkan_core.h(3520,32): message : see declaration of 'vkCreateImageView'
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(724,1): error C2440: 'initializing': cannot convert from 'uint32_t' to 'HelloTriangleApplication::QueueFamilyIndices'
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(724,1): message : No constructor could take the source type, or constructor overload resolution was ambiguous
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(725,45): error C2039: 'graphicsFamily': is not a member of 'HelloTriangleApplication::QueueFamilyIndices'
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(244): message : see declaration of 'HelloTriangleApplication::QueueFamilyIndices'
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(725,77): error C2039: 'presentFamily': is not a member of 'HelloTriangleApplication::QueueFamilyIndices'
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(244): message : see declaration of 'HelloTriangleApplication::QueueFamilyIndices'
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(725,12): error C2466: cannot allocate an array of constant size 0
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(727,15): error C2039: 'graphicsFamily': is not a member of 'HelloTriangleApplication::QueueFamilyIndices'
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(244): message : see declaration of 'HelloTriangleApplication::QueueFamilyIndices'
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(727,41): error C2039: 'presentFamily': is not a member of 'HelloTriangleApplication::QueueFamilyIndices'
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(244): message : see declaration of 'HelloTriangleApplication::QueueFamilyIndices'
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(728,4): error C2065: 'createInfo': undeclared identifier
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(729,4): error C2065: 'createInfo': undeclared identifier
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(730,4): error C2065: 'createInfo': undeclared identifier
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(733,4): error C2065: 'createInfo': undeclared identifier
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(734,4): error C2065: 'createInfo': undeclared identifier
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(735,4): error C2065: 'createInfo': undeclared identifier
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(789,52): error C2039: 'size': is not a member of 'VkImageSwapchainCreateInfoKHR'
-C:\GameDev\Vulkan\VulkanSDK\1.2.148.1\Include\vulkan\vulkan_core.h(5787): message : see declaration of 'VkImageSwapchainCreateInfoKHR'
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(790,46): error C2039: 'size': is not a member of 'VkImageSwapchainCreateInfoKHR'
-C:\GameDev\Vulkan\VulkanSDK\1.2.148.1\Include\vulkan\vulkan_core.h(5787): message : see declaration of 'VkImageSwapchainCreateInfoKHR'
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(792,26): error C2676: binary '[': 'VkImageSwapchainCreateInfoKHR' does not define this operator or a conversion to a type acceptable to the predefined operator
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(791,16): error C2466: cannot allocate an array of constant size 0
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(813,1): error C2440: 'initializing': cannot convert from 'uint32_t' to 'HelloTriangleApplication::QueueFamilyIndices'
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(813,1): message : No constructor could take the source type, or constructor overload resolution was ambiguous
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(817,50): error C2039: 'graphicsFamily': is not a member of 'HelloTriangleApplication::QueueFamilyIndices'
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(244): message : see declaration of 'HelloTriangleApplication::QueueFamilyIndices'
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(837,1): error C2660: 'vkAllocateCommandBuffers': function does not take 2 arguments
-C:\GameDev\Vulkan\VulkanSDK\1.2.148.1\Include\vulkan\vulkan_core.h(3696,32): message : see declaration of 'vkAllocateCommandBuffers'
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(847,1): error C2664: 'VkResult vkBeginCommandBuffer(VkCommandBuffer,const VkCommandBufferBeginInfo *)': cannot convert argument 1 from 'VkCommandBuffer_T' to 'VkCommandBuffer'
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(847,1): message : use of undefined type 'VkCommandBuffer_T'
-C:\GameDev\Vulkan\VulkanSDK\1.2.148.1\Include\vulkan\vulkan_core.h(69,1): message : see declaration of 'VkCommandBuffer_T'
-C:\GameDev\Vulkan\VulkanSDK\1.2.148.1\Include\vulkan\vulkan_core.h(3707,32): message : see declaration of 'vkBeginCommandBuffer'
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(854,17): error C2371: 'swapChainFramebuffers': redefinition; different basic types
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(827): message : see declaration of 'swapChainFramebuffers'
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(860,54): error C2065: 'i': undeclared identifier
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(867,39): error C2065: 'i': undeclared identifier
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(869,36): error C2065: 'i': undeclared identifier
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(870,28): error C2065: 'i': undeclared identifier
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(871,37): error C2065: 'i': undeclared identifier
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(873,41): error C2065: 'i': undeclared identifier
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(893,8): error C2039: 'framebufferResized': is not a member of 'HelloTriangleApplication'
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(736,1): error C2440: 'initializing': cannot convert from 'uint32_t' to 'HelloTriangleApplication::QueueFamilyIndices'
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(736,1): message : No constructor could take the source type, or constructor overload resolution was ambiguous
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(737,60): error C2039: 'value': is not a member of 'std::allocator<uint32_t>'
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(247): message : see declaration of 'std::allocator<uint32_t>'
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(737,91): error C2039: 'value': is not a member of 'std::allocator<uint32_t>'
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(247): message : see declaration of 'std::allocator<uint32_t>'
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(737,12): error C2466: cannot allocate an array of constant size 0
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(829,1): error C2440: 'initializing': cannot convert from 'uint32_t' to 'HelloTriangleApplication::QueueFamilyIndices'
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(829,1): message : No constructor could take the source type, or constructor overload resolution was ambiguous
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(834,65): error C2039: 'value': is not a member of 'std::allocator<uint32_t>'
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(247): message : see declaration of 'std::allocator<uint32_t>'
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(871,17): error C2040: 'swapChainFramebuffers': 'VkFramebuffer' differs in levels of indirection from 'std::vector<VkCommandBuffer,std::allocator<VkCommandBuffer>>'
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(877,54): error C2065: 'i': undeclared identifier
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(884,39): error C2065: 'i': undeclared identifier
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(886,36): error C2065: 'i': undeclared identifier
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(887,28): error C2065: 'i': undeclared identifier
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(888,37): error C2065: 'i': undeclared identifier
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(890,41): error C2065: 'i': undeclared identifier
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(912,8): error C2039: 'framebufferResized': is not a member of 'HelloTriangleApplication'
 C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(25): message : see declaration of 'HelloTriangleApplication'
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(913,31): error C2065: 'inFlightFences': undeclared identifier
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(913,1): error C2660: 'vkWaitForFences': function does not take 4 arguments
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(933,1): error C2679: binary '[': no operator found which takes a right-hand operand of type 'VkPhysicalDevice' (or there is no acceptable conversion)
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\vector(1507,27): message : could be 'const _Ty &std::vector<_Ty,std::allocator<_Ty>>::operator [](const unsigned __int64) noexcept const'
+          with
+          [
+              _Ty=VkFence
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\vector(1497,21): message : or       '_Ty &std::vector<_Ty,std::allocator<_Ty>>::operator [](const unsigned __int64) noexcept'
+          with
+          [
+              _Ty=VkFence
+          ]
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(933,1): message : while trying to match the argument list '(std::vector<VkFence,std::allocator<VkFence>>, VkPhysicalDevice)'
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(933,1): error C2660: 'vkWaitForFences': function does not take 4 arguments
 C:\GameDev\Vulkan\VulkanSDK\1.2.148.1\Include\vulkan\vulkan_core.h(3419,32): message : see declaration of 'vkWaitForFences'
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(914,29): error C2065: 'inFlightFences': undeclared identifier
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(914,1): error C2660: 'vkResetFences': function does not take 2 arguments
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(934,1): error C2679: binary '[': no operator found which takes a right-hand operand of type 'VkPhysicalDevice' (or there is no acceptable conversion)
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\vector(1507,27): message : could be 'const _Ty &std::vector<_Ty,std::allocator<_Ty>>::operator [](const unsigned __int64) noexcept const'
+          with
+          [
+              _Ty=VkFence
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\vector(1497,21): message : or       '_Ty &std::vector<_Ty,std::allocator<_Ty>>::operator [](const unsigned __int64) noexcept'
+          with
+          [
+              _Ty=VkFence
+          ]
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(934,1): message : while trying to match the argument list '(std::vector<VkFence,std::allocator<VkFence>>, VkPhysicalDevice)'
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(934,1): error C2660: 'vkResetFences': function does not take 2 arguments
 C:\GameDev\Vulkan\VulkanSDK\1.2.148.1\Include\vulkan\vulkan_core.h(3410,32): message : see declaration of 'vkResetFences'
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(916,1): error C2107: illegal index, indirection not allowed
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(916,1): error C2660: 'vkAcquireNextImageKHR': function does not take 5 arguments
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(936,1): error C2679: binary '[': no operator found which takes a right-hand operand of type 'VkPhysicalDevice' (or there is no acceptable conversion)
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\vector(1507,27): message : could be 'const _Ty &std::vector<_Ty,std::allocator<_Ty>>::operator [](const unsigned __int64) noexcept const'
+          with
+          [
+              _Ty=VkSemaphore
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\vector(1497,21): message : or       '_Ty &std::vector<_Ty,std::allocator<_Ty>>::operator [](const unsigned __int64) noexcept'
+          with
+          [
+              _Ty=VkSemaphore
+          ]
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(936,1): message : while trying to match the argument list '(std::vector<VkSemaphore,std::allocator<VkSemaphore>>, VkPhysicalDevice)'
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(936,1): error C2660: 'vkAcquireNextImageKHR': function does not take 5 arguments
 C:\GameDev\Vulkan\VulkanSDK\1.2.148.1\Include\vulkan\vulkan_core.h(5859,32): message : see declaration of 'vkAcquireNextImageKHR'
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(919,34): error C2676: binary '!=': 'VkImage_T' does not define this operator or a conversion to a type acceptable to the predefined operator
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(920,1): error C2664: 'VkResult vkWaitForFences(VkDevice,uint32_t,const VkFence *,VkBool32,uint64_t)': cannot convert argument 3 from 'VkImage_T *' to 'const VkFence *'
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(920,31): message : Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
-C:\GameDev\Vulkan\VulkanSDK\1.2.148.1\Include\vulkan\vulkan_core.h(3419,32): message : see declaration of 'vkWaitForFences'
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(923,32): error C2065: 'inFlightFences': undeclared identifier
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(925,29): error C2065: 'inFlightFences': undeclared identifier
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(925,1): error C2660: 'vkResetFences': function does not take 2 arguments
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(943,1): error C2679: binary '[': no operator found which takes a right-hand operand of type 'VkPhysicalDevice' (or there is no acceptable conversion)
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\vector(1507,27): message : could be 'const _Ty &std::vector<_Ty,std::allocator<_Ty>>::operator [](const unsigned __int64) noexcept const'
+          with
+          [
+              _Ty=VkFence
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\vector(1497,21): message : or       '_Ty &std::vector<_Ty,std::allocator<_Ty>>::operator [](const unsigned __int64) noexcept'
+          with
+          [
+              _Ty=VkFence
+          ]
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(943,1): message : while trying to match the argument list '(std::vector<VkFence,std::allocator<VkFence>>, VkPhysicalDevice)'
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(945,1): error C2679: binary '[': no operator found which takes a right-hand operand of type 'VkPhysicalDevice' (or there is no acceptable conversion)
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\vector(1507,27): message : could be 'const _Ty &std::vector<_Ty,std::allocator<_Ty>>::operator [](const unsigned __int64) noexcept const'
+          with
+          [
+              _Ty=VkFence
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\vector(1497,21): message : or       '_Ty &std::vector<_Ty,std::allocator<_Ty>>::operator [](const unsigned __int64) noexcept'
+          with
+          [
+              _Ty=VkFence
+          ]
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(945,1): message : while trying to match the argument list '(std::vector<VkFence,std::allocator<VkFence>>, VkPhysicalDevice)'
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(945,1): error C2660: 'vkResetFences': function does not take 2 arguments
 C:\GameDev\Vulkan\VulkanSDK\1.2.148.1\Include\vulkan\vulkan_core.h(3410,32): message : see declaration of 'vkResetFences'
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(927,52): error C2065: 'inFlightFences': undeclared identifier
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(927,1): error C2660: 'vkQueueSubmit': function does not take 3 arguments
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(947,1): error C2679: binary '[': no operator found which takes a right-hand operand of type 'VkPhysicalDevice' (or there is no acceptable conversion)
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\vector(1507,27): message : could be 'const _Ty &std::vector<_Ty,std::allocator<_Ty>>::operator [](const unsigned __int64) noexcept const'
+          with
+          [
+              _Ty=VkFence
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\vector(1497,21): message : or       '_Ty &std::vector<_Ty,std::allocator<_Ty>>::operator [](const unsigned __int64) noexcept'
+          with
+          [
+              _Ty=VkFence
+          ]
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(947,1): message : while trying to match the argument list '(std::vector<VkFence,std::allocator<VkFence>>, VkPhysicalDevice)'
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(947,1): error C2660: 'vkQueueSubmit': function does not take 3 arguments
 C:\GameDev\Vulkan\VulkanSDK\1.2.148.1\Include\vulkan\vulkan_core.h(3305,32): message : see declaration of 'vkQueueSubmit'
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(931,28): error C2040: 'imageAvailableSemaphores': 'std::vector<VkSemaphore,std::allocator<VkSemaphore>>' differs in levels of indirection from 'VkPhysicalDevice'
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(934,10): error C2040: 'currentFrame': 'size_t' differs in levels of indirection from 'VkPhysicalDevice'
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(937,12): error C2086: 'uint32_t imageIndex': redefinition
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(907): message : see declaration of 'imageIndex'
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(943,79): error C2088: '[': illegal for class
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(943,1): error C2660: 'vkQueueSubmit': function does not take 3 arguments
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(951,28): error C2086: 'std::vector<VkSemaphore,std::allocator<VkSemaphore>> imageAvailableSemaphores': redefinition
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(928): message : see declaration of 'imageAvailableSemaphores'
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(953,24): error C2086: 'std::vector<VkFence,std::allocator<VkFence>> inFlightFences': redefinition
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(931): message : see declaration of 'inFlightFences'
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(954,10): error C2040: 'currentFrame': 'size_t' differs in levels of indirection from 'VkPhysicalDevice'
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(957,12): error C2086: 'uint32_t imageIndex': redefinition
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(926): message : see declaration of 'imageIndex'
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(963,79): error C2088: '[': illegal for class
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(963,1): error C2660: 'vkQueueSubmit': function does not take 3 arguments
 C:\GameDev\Vulkan\VulkanSDK\1.2.148.1\Include\vulkan\vulkan_core.h(3305,32): message : see declaration of 'vkQueueSubmit'
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(948,33): error C2065: 'signalSemaphores': undeclared identifier
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(960,1): error C2107: illegal index, indirection not allowed
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(960,15): error C2466: cannot allocate an array of constant size 0
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(962,75): error C2088: '[': illegal for class
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(962,15): error C2466: cannot allocate an array of constant size 0
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(964,1): error C2036: 'VkPhysicalDevice': unknown size
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(964,1): error C2296: '%': illegal, left operand has type 'VkPhysicalDevice'
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(977,3): error C2065: 'imageAvailableSemaphores': undeclared identifier
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(978,3): error C2065: 'renderFinishedSemaphores': undeclared identifier
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(990,60): error C2065: 'imageAvailableSemaphores': undeclared identifier
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(990,1): error C2660: 'vkCreateSemaphore': function does not take 3 arguments
-C:\GameDev\Vulkan\VulkanSDK\1.2.148.1\Include\vulkan\vulkan_core.h(3426,32): message : see declaration of 'vkCreateSemaphore'
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(991,57): error C2065: 'renderFinishedSemaphores': undeclared identifier
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(991,1): error C2660: 'vkCreateSemaphore': function does not take 3 arguments
-C:\GameDev\Vulkan\VulkanSDK\1.2.148.1\Include\vulkan\vulkan_core.h(3426,32): message : see declaration of 'vkCreateSemaphore'
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(1012,30): error C2065: 'renderFinishedSemaphore': undeclared identifier
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(1012,1): fatal error C1003: error count exceeds 100; stopping compilation
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(968,33): error C2065: 'signalSemaphores': undeclared identifier
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(980,73): error C2088: '[': illegal for class
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(980,15): error C2466: cannot allocate an array of constant size 0
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(982,75): error C2088: '[': illegal for class
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(982,15): error C2466: cannot allocate an array of constant size 0
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(984,1): error C2036: 'VkPhysicalDevice': unknown size
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(984,1): error C2296: '%': illegal, left operand has type 'VkPhysicalDevice'

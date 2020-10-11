@@ -202,10 +202,10 @@ private:
 	}
 	void createSurface() {
 
-		VkWin32SurfaceCreateInfoKHR createInfo{};
+		/*VkWin32SurfaceCreateInfoKHR createInfo{};
 		createInfo.sType = VK_STRUCTURE_TYPE_WIN32_SURFACE_CREATE_INFO_KHR;
 		createInfo.hwnd = glfwGetWin32Window(window);
-		createInfo.hinstance = GetModuleHandle(nullptr);
+		createInfo.hinstance = GetModuleHandle(nullptr);*/
 
 		if (glfwCreateWindowSurface(instance, window, nullptr, &surface) != VK_SUCCESS) {
 			throw std::runtime_error("failed to create window surface!");
@@ -227,6 +227,8 @@ private:
 
 		std::multimap<int, VkPhysicalDevice> candidates;
 
+		bool rateDeviceSuitability;
+
 		for (const auto& device : devices) {
 			int score = rateDeviceSuitability(device);
 			candidates.insert(std::make_pair(score, device));
@@ -242,8 +244,8 @@ private:
 	}
 
 	struct QueueFamilyIndices {
-		std::optional<uint32_t> graphicsFamily;
-		std::optional<uint32_t> presentFamily;
+		std::allocator <uint32_t> graphicsFamily; 
+		std::allocator <uint32_t> presentFamily;
 
 		bool isComplete() {
 		  return graphicsFamily.has_value() && presentFamily.has_value();
@@ -253,7 +255,11 @@ private:
 	uint32_t findQueueFamilies(VkPhysicalDevice device) {
 		// Logic to find graphics queue family
 
-		vkGetDeviceQueue(device, indices.presentFamily.value(), 0, &presentQueue);
+		VkPhysicalDevice physicalDevice;
+		VkDevice Device;
+		std::vector <VkSwapchainCreateFlagsKHR> indices;
+
+		vkGetDeviceQueue(Device, indices.presentFamily.value(), 0, &presentQueue);
 		QueueFamilyIndices indices = findQueueFamilies(physicalDevice);
 
 		uint32_t queueFamilyCount = 0;
@@ -384,7 +390,7 @@ private:
 	}
 
 	VkExtent2D chooseSwapExtent(const VkSurfaceCapabilitiesKHR& capabilities) {
-		VkExtent2D currentFrame;
+		size_t currentFrame;
 
 		if (capabilities.currentExtent.width != UINT32_MAX) {
 			return capabilities.currentExtent;
@@ -399,6 +405,10 @@ private:
 			};
 		}
 
+		uint32_t imageIndex;
+
+		std::vector <VkSemaphore> imageAvailableSemaphores;
+
 		VkResult result = vkAcquireNextImageKHR(device, swapChain, UINT64_MAX, imageAvailableSemaphores[currentFrame], VK_NULL_HANDLE, &imageIndex);
 
 		if (result == VK_ERROR_OUT_OF_DATE_KHR) {
@@ -408,6 +418,8 @@ private:
 		else if (result != VK_SUCCESS && result != VK_SUBOPTIMAL_KHR) {
 			throw std::runtime_error("failed to acquire swap chain image!");
 		}
+
+		VkPresentInfoKHR presentInfo;
 
 		result = vkQueuePresentKHR(presentQueue, &presentInfo);
 
@@ -421,7 +433,7 @@ private:
 		currentFrame = (currentFrame + 1) % MAX_FRAMES_IN_FLIGHT;
 
 		std::vector<VkFence> inFlightFences;
-		size_t currentFrame = 0;
+		//size_t currentFrame = 0;
 
 		bool framebufferResized = false;
 
@@ -481,12 +493,12 @@ private:
 	}
 
 	void cleanupSwapChain() {
-		VkSwapchainKHR swapChainImageViews;
+		std::vector <VkImageView> swapChainImageViews;
 		VkRenderPass renderPass;
 		VkPipelineLayout pipelineLayout;
 		VkPipeline graphicsPipeline;
-		VkCommandBuffer commandBuffers;
-		VkSwapchainKHR swapChainFramebuffers;
+		std::vector <VkCommandBuffer> commandBuffers;
+		std::vector <VkFramebuffer> swapChainFramebuffers;
 
 		for (size_t i = 0; i < swapChainFramebuffers.size(); i++) {
 			vkDestroyFramebuffer(device, swapChainFramebuffers[i], nullptr);
@@ -551,8 +563,8 @@ private:
 	}
 
 	void createImageViews() {
-		VkImage swapChainImages;
-		VkImageView swapChainImageViews;
+		std::vector <VkImage> swapChainImages;
+		std::vector <VkImageView> swapChainImageViews;
 		VkFormat swapChainImageFormat;
 
 		swapChainImageViews.resize(swapChainImages.size());
@@ -720,16 +732,20 @@ private:
 
 	void createLogicalDevice() {
 		VkPhysicalDevice physicalDevice;
-
+		
 		QueueFamilyIndices indices = findQueueFamilies(physicalDevice);
 		uint32_t queueFamilyIndices[] = { indices.graphicsFamily.value(), indices.presentFamily.value() };
 
 		if (indices.graphicsFamily != indices.presentFamily) {
+			VkSwapchainCreateInfoKHR createInfo{};
+
 			createInfo.imageSharingMode = VK_SHARING_MODE_CONCURRENT;
 			createInfo.queueFamilyIndexCount = 2;
 			createInfo.pQueueFamilyIndices = queueFamilyIndices;
 		}
 		else {
+			VkSwapchainCreateInfoKHR createInfo{};
+
 			createInfo.imageSharingMode = VK_SHARING_MODE_EXCLUSIVE;
 			createInfo.queueFamilyIndexCount = 0; // Optional
 			createInfo.pQueueFamilyIndices = nullptr; // Optional
@@ -783,7 +799,7 @@ private:
 	void createFramebuffers() {
 		VkRenderPass renderPass;
 		VkExtent2D swapChainExtent;
-		VkImageSwapchainCreateInfoKHR swapChainImageViews;
+		std::vector <VkImageView> swapChainImageViews;
 
 		std::vector<VkFramebuffer> swapChainFramebuffers;
 		swapChainFramebuffers.resize(swapChainImageViews.size());
@@ -811,6 +827,7 @@ private:
 		VkPhysicalDevice physicalDevice;
 
 		QueueFamilyIndices queueFamilyIndices = findQueueFamilies(physicalDevice);
+		QueueFamilyIndices graphicsFamily;
 
 		VkCommandPoolCreateInfo poolInfo{};
 		poolInfo.sType = VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO;
@@ -823,8 +840,8 @@ private:
 	}
 
 	void createCommandBuffers() {
-		VkCommandBuffer commandBuffers;
-		VkSwapchainKHR swapChainFramebuffers;
+		std::vector<VkCommandBuffer> commandBuffers;
+		std::vector<VkCommandBuffer> swapChainFramebuffers;
 
 		commandBuffers.resize(swapChainFramebuffers.size());
 
@@ -885,6 +902,8 @@ private:
 	}
 
 	static void framebufferResizeCallback(GLFWwindow* window, int width, int height) {
+		bool framebufferResized;
+
 		window = glfwCreateWindow(WIDTH, HEIGHT, "Vulkan", nullptr, nullptr);
 		glfwSetWindowUserPointer(window, nullptr);
 		glfwSetFramebufferSizeCallback(window, framebufferResizeCallback);
@@ -905,10 +924,11 @@ private:
 	void drawFrame() {
 		VkPhysicalDevice currentFrame;
 		uint32_t imageIndex;
-		VkImage imagesInFlight;
-		VkPhysicalDevice imageAvailableSemaphores;
+		std::vector<VkFence> imagesInFlight;
+		std::vector<VkSemaphore> imageAvailableSemaphores;
 		VkSubmitInfo submitInfo;
 		VkQueue graphicsQueue;
+		std::vector<VkFence> inFlightFences;
 
 		vkWaitForFences(device, 1, &inFlightFences[currentFrame], VK_TRUE, UINT64_MAX);
 		vkResetFences(device, 1, &inFlightFences[currentFrame]);
@@ -970,9 +990,11 @@ private:
 
 		std::vector<VkFence> inFlightFences;
 		std::vector<VkFence> imagesInFlight;
+		std::vector<VkSemaphore> renderFinishedSemaphores;
+		std::vector<VkSemaphore> imageAvailableSemaphores;
 		size_t currentFrame = 0;
 
-		VkSwapchainCreateFlagsKHR swapChainImages;
+		std::vector <VkSwapchainCreateFlagsKHR> swapChainImages;
 
 		imageAvailableSemaphores.resize(MAX_FRAMES_IN_FLIGHT);
 		renderFinishedSemaphores.resize(MAX_FRAMES_IN_FLIGHT);
@@ -1001,6 +1023,12 @@ private:
 		VkPipeline graphicsPipeline;
 		VkPipelineLayout pipelineLayout;
 		VkRenderPass renderPass;
+		VkSemaphore renderFinishedSemaphore;
+		VkSemaphore imageAvailableSemaphore;
+		std::vector<VkSemaphore> renderFinishedSemaphores;
+		std::vector<VkSemaphore> imageAvailableSemaphores;
+		std::vector<VkFence> inFlightFences;
+		std::vector <VkImageView> swapChainImageViews;
 
 		vkDestroySurfaceKHR(instance, surface, nullptr);
 		vkDestroyInstance(instance, nullptr);
@@ -1035,6 +1063,8 @@ private:
 
 			vkDestroyPipeline(device, graphicsPipeline, nullptr);
 			vkDestroyPipelineLayout(device, pipelineLayout, nullptr);
+
+			std::vector <VkFramebuffer> swapChainFramebuffers;
 
 			for (auto framebuffer : swapChainFramebuffers) {
 				vkDestroyFramebuffer(device, framebuffer, nullptr);
