@@ -227,7 +227,6 @@ private:
 
 		std::multimap<int, VkPhysicalDevice> candidates;
 
-		bool rateDeviceSuitability;
 
 		for (const auto& device : devices) {
 			int score = rateDeviceSuitability(device);
@@ -243,24 +242,43 @@ private:
 		}
 	}
 
+	int rateDeviceSuitability(VkPhysicalDevice device) {
+
+		int score = 0;
+
+		//// Discrete GPUs have a significant performance advantage
+		//if (deviceProperties.deviceType == VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU) {
+		//	score += 1000;
+		//}
+
+		//// Maximum possible size of textures affects graphics quality
+		//score += deviceProperties.limits.maxImageDimension2D;
+
+		//// Application can't function without geometry shaders
+		//if (!deviceFeatures.geometryShader) {
+		//	return 0;
+		//}
+
+		return score;
+	}
+
 	struct QueueFamilyIndices {
-		std::allocator <uint32_t> graphicsFamily; 
-		std::allocator <uint32_t> presentFamily;
+		std::optional <uint32_t> graphicsFamily;
+		std::optional <uint32_t> presentFamily;
 
 		bool isComplete() {
 		  return graphicsFamily.has_value() && presentFamily.has_value();
 		}
 	};
 
-	uint32_t findQueueFamilies(VkPhysicalDevice device) {
+	QueueFamilyIndices findQueueFamilies(VkPhysicalDevice device) {
 		// Logic to find graphics queue family
 
 		VkPhysicalDevice physicalDevice;
 		VkDevice Device;
-		std::vector <VkSwapchainCreateFlagsKHR> indices;
 
-		vkGetDeviceQueue(Device, indices.presentFamily.value(), 0, &presentQueue);
 		QueueFamilyIndices indices = findQueueFamilies(physicalDevice);
+		vkGetDeviceQueue(Device, indices.presentFamily.value(), 0, &presentQueue);
 
 		uint32_t queueFamilyCount = 0;
 		vkGetPhysicalDeviceQueueFamilyProperties(device, &queueFamilyCount, nullptr);
@@ -297,6 +315,8 @@ private:
 			queueCreateInfos.push_back(queueCreateInfo);
 		}
 
+		VkDeviceCreateInfo createInfo{};
+
 		createInfo.queueCreateInfoCount = static_cast<uint32_t>(queueCreateInfos.size());
 		createInfo.pQueueCreateInfos = queueCreateInfos.data();
 
@@ -332,8 +352,10 @@ private:
 
 		return requiredExtensions.empty();
 
-		//createInfo.enabledExtensionCount = static_cast<uint32_t>(deviceExtensions.size());
-		//createInfo.ppEnabledExtensionNames = deviceExtensions.data();
+		VkDeviceCreateInfo createInfo{};
+
+		createInfo.enabledExtensionCount = static_cast<uint32_t>(deviceExtensions.size());
+		createInfo.ppEnabledExtensionNames = deviceExtensions.data();
 	}
 
 	struct SwapChainSupportDetails {
@@ -390,7 +412,7 @@ private:
 	}
 
 	VkExtent2D chooseSwapExtent(const VkSurfaceCapabilitiesKHR& capabilities) {
-		size_t currentFrame;
+		size_t currentFrame = 0;
 
 		if (capabilities.currentExtent.width != UINT32_MAX) {
 			return capabilities.currentExtent;
@@ -413,7 +435,7 @@ private:
 
 		if (result == VK_ERROR_OUT_OF_DATE_KHR) {
 			recreateSwapChain();
-			return;
+			//return;
 		}
 		else if (result != VK_SUCCESS && result != VK_SUBOPTIMAL_KHR) {
 			throw std::runtime_error("failed to acquire swap chain image!");
@@ -433,7 +455,6 @@ private:
 		currentFrame = (currentFrame + 1) % MAX_FRAMES_IN_FLIGHT;
 
 		std::vector<VkFence> inFlightFences;
-		//size_t currentFrame = 0;
 
 		bool framebufferResized = false;
 
@@ -484,8 +505,6 @@ private:
 		swapChainImages.resize(imageCount);
 		vkGetSwapchainImagesKHR(device, swapChain, &imageCount, swapChainImages.data());
 
-		VkSwapchainKHR swapChain;
-		std::vector<VkImage> swapChainImages;
 		VkFormat swapChainImageFormat;
 		VkExtent2D swapChainExtent;
 		swapChainImageFormat = surfaceFormat.format;
@@ -573,6 +592,8 @@ private:
 
 		}
 
+		int i = 1;
+
 		VkImageViewCreateInfo createInfo{};
 		createInfo.sType = VK_STRUCTURE_TYPE_IMAGE_VIEW_CREATE_INFO;
 		createInfo.image = swapChainImages[i];
@@ -635,7 +656,6 @@ private:
 		subpass.pColorAttachments = &colorAttachmentRef;
 
 		VkRenderPass renderPass;
-		VkPipelineLayout pipelineLayout;
 
 		VkRenderPassCreateInfo renderPassInfo{};
 		renderPassInfo.sType = VK_STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO;
@@ -868,8 +888,9 @@ private:
 
 		VkRenderPass renderPass;
 		VkExtent2D swapChainExtent;
-		VkFramebuffer swapChainFramebuffers;
 		VkPipeline graphicsPipeline;
+
+		int i = i++;
 
 		VkRenderPassBeginInfo renderPassInfo{};
 		renderPassInfo.sType = VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO;
@@ -902,14 +923,14 @@ private:
 	}
 
 	static void framebufferResizeCallback(GLFWwindow* window, int width, int height) {
-		bool framebufferResized;
 
 		window = glfwCreateWindow(WIDTH, HEIGHT, "Vulkan", nullptr, nullptr);
 		glfwSetWindowUserPointer(window, nullptr);
 		glfwSetFramebufferSizeCallback(window, framebufferResizeCallback);
 
 		auto app = reinterpret_cast<HelloTriangleApplication*>(glfwGetWindowUserPointer(window));
-		app->framebufferResized = true;
+
+		//app->framebufferResized = true;
 	}
 
 	void mainLoop() {
@@ -922,7 +943,7 @@ private:
 	}
 
 	void drawFrame() {
-		VkPhysicalDevice currentFrame;
+		size_t currentFrame = 0;
 		uint32_t imageIndex;
 		std::vector<VkFence> imagesInFlight;
 		std::vector<VkSemaphore> imageAvailableSemaphores;
@@ -948,13 +969,8 @@ private:
 			throw std::runtime_error("failed to submit draw command buffer!");
 		}
 
-		std::vector<VkSemaphore> imageAvailableSemaphores;
-		std::vector<VkSemaphore> renderFinishedSemaphores;
-		std::vector<VkFence> inFlightFences;
-		size_t currentFrame = 0;
 
 		VkSemaphore imageAvailableSemaphore;
-		uint32_t imageIndex;
 		vkAcquireNextImageKHR(device, swapChain, UINT64_MAX, imageAvailableSemaphore, VK_NULL_HANDLE, &imageIndex);
 
 		VkPresentInfoKHR presentInfo{};
@@ -963,9 +979,13 @@ private:
 		if (vkQueueSubmit(graphicsQueue, 1, &submitInfo, inFlightFences[currentFrame]) != VK_SUCCESS) {
 			throw std::runtime_error("failed to submit draw command buffer!");
 		}
+		
+		//VkSemaphore waitSemaphores[] = { imageAvailableSemaphores[currentFrame] };
+
+		//VkSemaphore signalSemaphores[] = { renderFinishedSemaphores[currentFrame] };
 
 		presentInfo.waitSemaphoreCount = 1;
-		presentInfo.pWaitSemaphores = signalSemaphores;
+		//presentInfo.pWaitSemaphores = signalSemaphores;
 
 		VkSwapchainKHR swapChains[] = { swapChain };
 		presentInfo.swapchainCount = 1;
@@ -975,13 +995,7 @@ private:
 		vkQueuePresentKHR(presentQueue, &presentInfo);
 		vkQueueWaitIdle(presentQueue);
 
-		
-
-		VkSemaphore waitSemaphores[] = { imageAvailableSemaphores[currentFrame] };
-
-		VkSemaphore signalSemaphores[] = { renderFinishedSemaphores[currentFrame] };
-
-		currentFrame = (currentFrame + 1) % MAX_FRAMES_IN_FLIGHT;
+		//currentFrame = (currentFrame + 1) % MAX_FRAMES_IN_FLIGHT;
 
 		
 	}
