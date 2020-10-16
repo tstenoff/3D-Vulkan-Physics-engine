@@ -112,8 +112,8 @@ private:
 		else {
 			createInfo.enabledLayerCount = 0;
 		}
-		//createInfo.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
-		//createInfo.pApplicationInfo = &appInfo;
+		createInfo.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
+		createInfo.pApplicationInfo = &appInfo;
 
 		uint32_t glfwExtensionCount = 0;
 		const char** glfwExtensions;
@@ -147,7 +147,7 @@ private:
 
 		}
 
-		/*std::vector<const char*> getRequiredExtensions() {
+		/*std::vector<const char*> getRequiredExtensions(); {
 			uint32_t glfwExtensionCount = 0;
 			const char** glfwExtensions;
 			glfwExtensions = glfwGetRequiredInstanceExtensions(&glfwExtensionCount);
@@ -246,18 +246,21 @@ private:
 
 		int score = 0;
 
-		//// Discrete GPUs have a significant performance advantage
-		//if (deviceProperties.deviceType == VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU) {
-		//	score += 1000;
-		//}
+		VkPhysicalDeviceProperties deviceProperties;
+		VkPhysicalDeviceFeatures deviceFeatures;
 
-		//// Maximum possible size of textures affects graphics quality
-		//score += deviceProperties.limits.maxImageDimension2D;
+		// Discrete GPUs have a significant performance advantage
+		if (deviceProperties.deviceType == VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU) {
+			score += 1000;
+		}
 
-		//// Application can't function without geometry shaders
-		//if (!deviceFeatures.geometryShader) {
-		//	return 0;
-		//}
+		// Maximum possible size of textures affects graphics quality
+		score += deviceProperties.limits.maxImageDimension2D;
+
+		// Application can't function without geometry shaders
+		if (!deviceFeatures.geometryShader) {
+			return 0;
+		}
 
 		return score;
 	}
@@ -861,7 +864,7 @@ private:
 
 	void createCommandBuffers() {
 		std::vector<VkCommandBuffer> commandBuffers;
-		std::vector<VkCommandBuffer> swapChainFramebuffers;
+		std::vector<VkFramebuffer> swapChainFramebuffers;
 
 		commandBuffers.resize(swapChainFramebuffers.size());
 
@@ -923,14 +926,14 @@ private:
 	}
 
 	static void framebufferResizeCallback(GLFWwindow* window, int width, int height) {
-
+		
 		window = glfwCreateWindow(WIDTH, HEIGHT, "Vulkan", nullptr, nullptr);
-		glfwSetWindowUserPointer(window, nullptr);
+		glfwSetWindowUserPointer(window, this);
 		glfwSetFramebufferSizeCallback(window, framebufferResizeCallback);
 
 		auto app = reinterpret_cast<HelloTriangleApplication*>(glfwGetWindowUserPointer(window));
-
-		//app->framebufferResized = true;
+		app->framebufferResized = true;
+	
 	}
 
 	void mainLoop() {
@@ -947,6 +950,7 @@ private:
 		uint32_t imageIndex;
 		std::vector<VkFence> imagesInFlight;
 		std::vector<VkSemaphore> imageAvailableSemaphores;
+		std::vector<VkSemaphore> renderFinishedSemaphores;
 		VkSubmitInfo submitInfo;
 		VkQueue graphicsQueue;
 		std::vector<VkFence> inFlightFences;
@@ -980,12 +984,12 @@ private:
 			throw std::runtime_error("failed to submit draw command buffer!");
 		}
 		
-		//VkSemaphore waitSemaphores[] = { imageAvailableSemaphores[currentFrame] };
+		VkSemaphore waitSemaphores[] = { imageAvailableSemaphores[currentFrame] };
 
-		//VkSemaphore signalSemaphores[] = { renderFinishedSemaphores[currentFrame] };
+		VkSemaphore signalSemaphores[] = { renderFinishedSemaphores[currentFrame] };
 
 		presentInfo.waitSemaphoreCount = 1;
-		//presentInfo.pWaitSemaphores = signalSemaphores;
+		presentInfo.pWaitSemaphores = signalSemaphores;
 
 		VkSwapchainKHR swapChains[] = { swapChain };
 		presentInfo.swapchainCount = 1;
@@ -995,7 +999,7 @@ private:
 		vkQueuePresentKHR(presentQueue, &presentInfo);
 		vkQueueWaitIdle(presentQueue);
 
-		//currentFrame = (currentFrame + 1) % MAX_FRAMES_IN_FLIGHT;
+		currentFrame = (currentFrame + 1) % MAX_FRAMES_IN_FLIGHT;
 
 		
 	}

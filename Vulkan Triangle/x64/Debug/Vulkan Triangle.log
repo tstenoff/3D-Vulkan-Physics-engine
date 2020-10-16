@@ -1,7 +1,6 @@
 ﻿  main.cpp
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(898,1): error C2440: '=': cannot convert from '_Ty' to 'VkFramebuffer'
-          with
-          [
-              _Ty=VkCommandBuffer
-          ]
-C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(898,55): message : Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(931,36): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(931,1): error C2660: 'glfwSetWindowUserPointer': function does not take 1 arguments
+C:\GameDev\Vulkan\glfw-3.3.2.bin.WIN64\include\GLFW\glfw3.h(3551,14): message : see declaration of 'glfwSetWindowUserPointer'
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(935,8): error C2039: 'framebufferResized': is not a member of 'HelloTriangleApplication'
+C:\Users\osama\source\repos\Vulkan Triangle\main.cpp(25): message : see declaration of 'HelloTriangleApplication'
