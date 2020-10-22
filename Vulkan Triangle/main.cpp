@@ -11,6 +11,10 @@
 #include <fstream>
 #include <optional>
 
+#define VK_USE_PLATFORM_WIN32_KHR
+
+#include <vulkan/vulkan.h>
+
 const uint32_t WIDTH = 800;
 const uint32_t HEIGHT = 600;
 
@@ -37,7 +41,6 @@ private:
 	VkDebugUtilsMessengerEXT debugMessenger;
 	GLFWwindow* window;
 	VkDevice device;
-	VkSurfaceKHR surface;
 	VkQueue presentQueue;
 	VkSwapchainKHR swapChain;
 	VkCommandPool commandPool;
@@ -54,6 +57,7 @@ private:
 		createGraphicsPipeline();
 		createFramebuffers();
 		createCommandPool();
+		createVertexBuffer();
 		createCommandBuffers();
 		createSyncObjects();
 	}
@@ -201,6 +205,7 @@ private:
 		}
 	}
 	void createSurface() {
+		VkSurfaceKHR surface;
 
 		/*VkWin32SurfaceCreateInfoKHR createInfo{};
 		createInfo.sType = VK_STRUCTURE_TYPE_WIN32_SURFACE_CREATE_INFO_KHR;
@@ -302,6 +307,7 @@ private:
 
 		}
 
+		VkSurfaceKHR surface;
 		VkBool32 presentSupport = false;
 		vkGetPhysicalDeviceSurfaceSupportKHR(device, i, surface, &presentSupport);
 
@@ -371,6 +377,8 @@ private:
 		SwapChainSupportDetails details;
 
 		return details;
+
+		VkSurfaceKHR surface;
 
 		vkGetPhysicalDeviceSurfaceCapabilitiesKHR(device, surface, &details.capabilities);
 		uint32_t formatCount;
@@ -483,6 +491,8 @@ private:
 			imageCount = swapChainSupport.capabilities.maxImageCount;
 		}
 
+		VkSurfaceKHR surface;
+
 		VkSwapchainCreateInfoKHR createInfo{};
 		createInfo.sType = VK_STRUCTURE_TYPE_SWAPCHAIN_CREATE_INFO_KHR;
 		createInfo.surface = surface;
@@ -541,6 +551,15 @@ private:
 
 	/*void cleanup() {
 		cleanupSwapChain();
+
+		std::vector<VkFence> imagesInFlight;
+		std::vector<VkSemaphore> imageAvailableSemaphores;
+		std::vector<VkSemaphore> renderFinishedSemaphores;
+		VkSurfaceKHR surface; 
+		VkBuffer vertexBuffer;
+		std::vector<VkFence> inFlightFences;
+
+		vkDestroyBuffer(device, vertexBuffer, nullptr);
 
 		for (size_t i = 0; i < MAX_FRAMES_IN_FLIGHT; i++) {
 			vkDestroySemaphore(device, renderFinishedSemaphores[i], nullptr);
@@ -860,6 +879,21 @@ private:
 		if (vkCreateCommandPool(device, &poolInfo, nullptr, &commandPool) != VK_SUCCESS) {
 			throw std::runtime_error("failed to create command pool!");
 		}
+	} 
+
+	void createVertexBuffer() {
+		VkBuffer vertexBuffer;
+		std::vector <int32_t> vertices;
+
+		VkBufferCreateInfo bufferInfo{};
+		bufferInfo.sType = VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO;
+		bufferInfo.size = sizeof(vertices[0]) * vertices.size();
+		bufferInfo.usage = VK_BUFFER_USAGE_VERTEX_BUFFER_BIT;
+		bufferInfo.sharingMode = VK_SHARING_MODE_EXCLUSIVE;
+
+		if (vkCreateBuffer(device, &bufferInfo, nullptr, &vertexBuffer) != VK_SUCCESS) {
+			throw std::runtime_error("failed to create vertex buffer!");
+		}
 	}
 
 	void createCommandBuffers() {
@@ -928,11 +962,11 @@ private:
 	static void framebufferResizeCallback(GLFWwindow* window, int width, int height) {
 		
 		window = glfwCreateWindow(WIDTH, HEIGHT, "Vulkan", nullptr, nullptr);
-		glfwSetWindowUserPointer(window, this);
+		glfwSetWindowUserPointer(window, nullptr);
 		glfwSetFramebufferSizeCallback(window, framebufferResizeCallback);
 
 		auto app = reinterpret_cast<HelloTriangleApplication*>(glfwGetWindowUserPointer(window));
-		app->framebufferResized = true;
+		//app->framebufferResized = true;
 	
 	}
 
@@ -1038,6 +1072,9 @@ private:
 
 
 	void cleanup() {
+
+		cleanupSwapChain();
+
 		VkPipeline graphicsPipeline;
 		VkPipelineLayout pipelineLayout;
 		VkRenderPass renderPass;
@@ -1047,6 +1084,7 @@ private:
 		std::vector<VkSemaphore> imageAvailableSemaphores;
 		std::vector<VkFence> inFlightFences;
 		std::vector <VkImageView> swapChainImageViews;
+		VkSurfaceKHR surface;
 
 		vkDestroySurfaceKHR(instance, surface, nullptr);
 		vkDestroyInstance(instance, nullptr);
